@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hyprpy"
+version = "0.0.1"
+requires-python = ">= 3.12"
+authors = [
+  {name = "Michael LePera", email = "mail@michaellepera.xyz"}
+]
+maintainers = [
+  {name = "Michael LePera", email = "mail@michaellepera.xyz"}
+]
+description = "Fully typed Hyprland socket wrapper"
+readme = "README.md"
+license = {file = "LICENSE"}
+keywords = ["hyprland", "Hyprland", "wayland", "compositor", "linux"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Topic :: Software Development :: Hyprland",
+  "Programming Language :: Python :: 3.12",
+]
+
