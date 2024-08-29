@@ -9,22 +9,23 @@ from dataclasses import dataclass
 class Workspace:
     """Emitted on workspace change.
 
-    Is emitted ONLY when a user requests a workspace change, 
+    Is emitted ONLY when a user requests a workspace change,
     and is not emitted on mouse movements (see activemon)
     """
 
-    name: str
+    workspace_name: str
 
 
 @dataclass
 class WorkspaceV2:
     """Emitted on workspace change.
 
-    Is emitted ONLY when a user requests a workspace change, 
+    Is emitted ONLY when a user requests a workspace change,
     and is not emitted on mouse movements (see activemon)
     """
-    id: int
-    name: str
+
+    workspace_id: int
+    workspace_name: str
 
 
 @dataclass
@@ -55,11 +56,12 @@ class Fullscreen:
     """Emitted when a fullscreen status of a window changes.
 
     A fullscreen event is not guaranteed to fire on/off once in succession.
-    Some windows may fire multiple requests to be fullscreened, resulting in 
+    
+    Some windows may fire multiple requests to be fullscreened, resulting in
     multiple fullscreen events.
     """
 
-    state: bool
+    fullscreen_state: bool
 
 
 @dataclass
@@ -231,13 +233,13 @@ class Urgent:
 
 @dataclass
 class Minimize:
-    """Emitted when a window requests a change to its minimized state. 
+    """Emitted when a window requests a change to its minimized state.
 
     MINIMIZED is either 0 or 1.
     """
 
     window_address: str
-    minimized: bool
+    window_minimized: bool
 
 
 @dataclass
@@ -248,8 +250,8 @@ class ScreenCast:
     State is 0/1, owner is 0 - monitor share, 1 - window share
     """
 
-    state: bool
-    owner: bool
+    screencopy_state: bool
+    window_owner: bool
 
 
 @dataclass
@@ -271,14 +273,14 @@ class WindowTitleV2:
 class ToggleGroup:
     """Emitted when togglegroup command is used.
 
-    Returns state,handle where the state is a toggle status and the handle
+    Returns `state,handle` where the state is a toggle status and the handle
     is one or more window addresses separated by a comma
 
     e.g. 0,0x64cea2525760,0x64cea2522380 where 0 means that a group has been
     destroyed and the rest informs which windows were part of it.
     """
 
-    state: bool
+    toggle_status: bool
     window_addresses: list[str]
 
 
@@ -306,14 +308,16 @@ class MoveOutOfGroup:
 class IgnoreGroupLock:
     """Emitted when ignoregrouplock is toggled."""
 
-    state: bool
+    ignore_state: bool
+
 
 
 @dataclass
 class LockGroups:
     """Emitted when lockgroups is toggled."""
 
-    state: bool
+    lock_state: bool
+
 
 
 @dataclass
@@ -326,7 +330,9 @@ class Pin:
     """Emitted when a window is pinned or unpinned."""
 
     window_address: str
-    pin_state: bool
+    pinned: bool
+
+
 
 type WorkspaceEvent = (
     Workspace
@@ -364,34 +370,14 @@ type MonitorEvent = (
     | FocusedMonitor
 )
 
-type LayerEvent = (
-    OpenLayer
-    | CloseLayer
-    | CloseLayer
-)
+type LayerEvent = OpenLayer | CloseLayer | CloseLayer
 
 type GroupEvent = (
-    ToggleGroup
-    | MoveIntoGroup
-    | MoveOutOfGroup
-    | IgnoreGroupLock
-    | LockGroups
+    ToggleGroup | MoveIntoGroup | MoveOutOfGroup | IgnoreGroupLock | LockGroups
 )
 
-type MiscEvent = (
-    ActiveLayout
-    | Submap
-    | ScreenCast
-    | ConfigReloaded
-)
+type MiscEvent = ActiveLayout | Submap | ScreenCast | ConfigReloaded
 
 type HyprlandEvent = (
-    WorkspaceEvent
-    | MonitorEvent
-    | WindowEvent
-    | LayerEvent
-    | GroupEvent
-    | MiscEvent
+    WorkspaceEvent | MonitorEvent | WindowEvent | LayerEvent | GroupEvent | MiscEvent
 )
-
-
