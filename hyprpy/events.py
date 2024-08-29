@@ -13,7 +13,7 @@ class Workspace:
     and is not emitted on mouse movements (see activemon)
     """
 
-    name: str
+    workspace_name: str
 
 
 @dataclass
@@ -24,8 +24,8 @@ class WorkspaceV2:
     and is not emitted on mouse movements (see activemon)
     """
 
-    id: int
-    name: str
+    workspace_id: int
+    workspace_name: str
 
 
 @dataclass
@@ -60,7 +60,7 @@ class Fullscreen:
     multiple fullscreen events.
     """
 
-    state: bool
+    fullscreen_state: bool
 
 
 @dataclass
@@ -238,7 +238,7 @@ class Minimize:
     """
 
     window_address: str
-    minimized: bool
+    window_minimized: bool
 
 
 @dataclass
@@ -249,8 +249,8 @@ class ScreenCast:
     State is 0/1, owner is 0 - monitor share, 1 - window share
     """
 
-    state: bool
-    owner: bool
+    screencopy_state: bool
+    window_owner: bool
 
 
 @dataclass
@@ -272,14 +272,14 @@ class WindowTitleV2:
 class ToggleGroup:
     """Emitted when togglegroup command is used.
 
-    Returns state,handle where the state is a toggle status and the handle
+    Returns `state,handle` where the state is a toggle status and the handle
     is one or more window addresses separated by a comma
 
     e.g. 0,0x64cea2525760,0x64cea2522380 where 0 means that a group has been
     destroyed and the rest informs which windows were part of it.
     """
 
-    state: bool
+    toggle_status: bool
     window_addresses: list[str]
 
 
@@ -307,7 +307,7 @@ class MoveOutOfGroup:
 class IgnoreGroupLock:
     """Emitted when ignoregrouplock is toggled."""
 
-    state: bool
+    ignore_state: bool
 
 
 @dataclass
