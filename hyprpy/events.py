@@ -56,6 +56,7 @@ class Fullscreen:
     """Emitted when a fullscreen status of a window changes.
 
     A fullscreen event is not guaranteed to fire on/off once in succession.
+    
     Some windows may fire multiple requests to be fullscreened, resulting in
     multiple fullscreen events.
     """
@@ -310,11 +311,13 @@ class IgnoreGroupLock:
     ignore_state: bool
 
 
+
 @dataclass
 class LockGroups:
     """Emitted when lockgroups is toggled."""
 
     lock_state: bool
+
 
 
 @dataclass
@@ -328,6 +331,7 @@ class Pin:
 
     window_address: str
     pinned: bool
+
 
 
 type WorkspaceEvent = (
