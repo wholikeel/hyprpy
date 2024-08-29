@@ -314,7 +314,7 @@ class IgnoreGroupLock:
 class LockGroups:
     """Emitted when lockgroups is toggled."""
 
-    state: bool
+    lock_state: bool
 
 
 @dataclass
@@ -327,7 +327,7 @@ class Pin:
     """Emitted when a window is pinned or unpinned."""
 
     window_address: str
-    pin_state: bool
+    pinned: bool
 
 
 type WorkspaceEvent = (
